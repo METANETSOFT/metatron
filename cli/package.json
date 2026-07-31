@@ -1,0 +1,16 @@
+{
+  "name": "@metatron/cli",
+  "version": "0.1.0",
+  "description": "Metatron (dbbranch) panel CLI — git dalina gore Postgres dalini otomatik secer",
+  "type": "module",
+  "bin": { "metatron": "./metatron.js" },
+  "engines": { "node": ">=20" },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/METANETSOFT/metatron.git",
+    "directory": "cli"
+  },
+  "homepage": "https://github.com/METANETSOFT/metatron#readme",
+  "publishConfig": { "access": "public" }
+}
