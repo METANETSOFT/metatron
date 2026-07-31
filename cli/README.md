@@ -1,4 +1,4 @@
-# @metatron/cli
+# metatron-cli
 
 Metatron panelinin komut satiri istemcisi. Gorevi: **hangi git dalindaysan, o git dalina ait
 Postgres dalini otomatik secmek.** AI ajanlari (Claude Code, Kimi, Codex) ve insanlar ayni
@@ -7,8 +7,8 @@ komutu kullanir.
 ## Kurulum
 
 ```bash
-npm install -g @metatron/cli
-# veya tek seferlik: npx @metatron/cli ...
+npm install -g metatron-cli
+# veya tek seferlik: npx metatron-cli ...
 ```
 
 Node >= 20 gerekir (yerlesik `fetch` kullanir, bagimlilik yok).

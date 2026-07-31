@@ -8,14 +8,14 @@ Bu repo Metatron ekosisteminin istemci tarafini tutar:
 
 | Yol | Aciklama |
 | --- | --- |
-| [`cli/`](./cli) | **`@metatron/cli`** — AI ajanlarinin ve insanlarin "su dalda calis" dediginde dogru Postgres dalina otomatik gecmesini saglayan komut satiri araci. |
+| [`cli/`](./cli) | **`metatron-cli`** — AI ajanlarinin ve insanlarin "su dalda calis" dediginde dogru Postgres dalina otomatik gecmesini saglayan komut satiri araci. |
 
 Kontrol duzlemi (panel + worker) su an ozel `myagizmaktav/db-branching` reposunda yasiyor.
 
 ## CLI'yi 30 saniyede kur
 
 ```bash
-npm install -g @metatron/cli
+npm install -g metatron-cli
 
 # Panelden urettigin kisisel token ile (dbb_...):
 metatron login --url https://panel.tr.foxtools.de --token dbb_...
