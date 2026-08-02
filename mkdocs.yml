@@ -1,0 +1,56 @@
+# Metatron (dbbranch) — belge sitesi
+# Build:  mkdocs build --strict        (statik çıktı → site/)
+# Yayın:  mkdocs gh-deploy --force     (gh-pages dalı → GitHub Pages)
+
+site_name: Metatron Belgeleri
+site_description: "Her git dalına gerçek PostgreSQL — ZFS copy-on-write, kendi sunucunda."
+site_url: https://metanetsoft.github.io/metatron/
+repo_url: https://github.com/METANETSOFT/metatron
+
+# Sayfalar docs/ altında durur (varsayılan docs_dir, açıkça yazıldı).
+docs_dir: docs
+
+theme:
+  name: material
+  language: tr            # arayüz çevirileri hazır gelir
+  palette:
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate       # koyu varsayılan — marka: koyu, terminal-yakın alet
+      toggle:
+        icon: material/weather-sunny
+        name: Açık temaya geç
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Koyu temaya geç
+  features:
+    - navigation.top
+    - search.highlight
+
+plugins:
+  - search:
+      lang: tr            # istemci-taraflı arama, ek servis yok
+
+nav:
+  - Başlangıç: index.md
+  - Mimari: mimari.md
+  - Bağlanma: baglanma.md
+  - Dallar: dallar.md
+  - İstemci (Faz 1): istemci.md
+  - ORMIM ve metatron dev (Faz 2): ormim.md
+  - Merge motoru (Faz 2.5): merge-motoru.md
+  - Maskeleme: maskeleme.md
+  - Roller: roller.md
+  - Workspace ve yetki: workspace-yetki.md
+  - Kolon paylaşımı: kolon-paylasimi.md
+  - Storage (S3/MinIO): storage.md
+  - Sorgu içgörüleri: sorgu-icgoruleri.md
+  - PITR (geri dönüş): pitr.md
+  - Site planı (meta): PLAN.md
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true

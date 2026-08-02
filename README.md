@@ -42,3 +42,13 @@ tek kural eklemek yeterli:
 kendi kabuguna da uygulayabilir.
 
 Detay: [cli/README.md](./cli/README.md)
+
+## Belgeler
+
+Urun belgeleri (mimari, baglanma, dallar, maskeleme, roller, PITR ve faz kontratlari)
+[`docs/`](./docs) altinda duz Markdown olarak durur ve MkDocs Material ile statik siteye
+derlenir:
+
+- **Site:** <https://metanetsoft.github.io/metatron/>
+- Yerel onizleme: `mkdocs serve` (kok `mkdocs.yml`; `pip install mkdocs-material` yeterli)
+- Yayin: `mkdocs gh-deploy --force` → `gh-pages` dali GitHub Pages'ten sunulur
