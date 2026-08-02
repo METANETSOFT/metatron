@@ -145,6 +145,15 @@ metatron use feat/x                # dala geç + .env.local yaz
 metatron hook install              # git checkout'unda otomatik `use` (post-checkout)
 ```
 
+## Uygulama auth'ı: Better Auth
+
+Yukarıdaki `dbb_` token **panel kimliğidir** — senin ve ekibinin Metatron'a
+erişimidir; uygulamanın **son kullanıcılarına** verilmez. Uygulama kimliği
+(login/signup, oturum) ayrı bir katmandır ve önerilen sağlayıcı **Better
+Auth**'tur: kendi Postgres'inde çalışır, oturumu cookie ile taşır ve
+Metatron'a kenarda küçük bir köprüyle bağlanır. Kurulum taslağı, auth
+tablolarının şema dışı tutulması ve köprü modeli: [Kimlik: Better Auth](auth.md).
+
 Şimdi şunu yapabileceksin: panele bağlanıp fonksiyon çağırmak ve React
 ağacına canlı veri bağlamak. Sıra kendi şemanı tanımlamakta:
 [Şema: React ORM (ORMIM)](react-ormim.md).
