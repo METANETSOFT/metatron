@@ -1,0 +1,1484 @@
+
+<!doctype html>
+<html lang="tr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Her git dalına gerçek PostgreSQL — ZFS copy-on-write, kendi sunucunda.">
+      
+      
+      
+        <link rel="canonical" href="https://metanetsoft.github.io/metatron/rehber/react-fonksiyonlar/">
+      
+      
+        <link rel="prev" href="../react-ormim/">
+      
+      
+        <link rel="next" href="../crud/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Fonksiyonlar ve React - Metatron Belgeleri</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fonksiyonlar-ve-react" class="md-skip">
+          Ana içeriğe geç
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Başlık">
+    <a href="../.." title="Metatron Belgeleri" class="md-header__button md-logo" aria-label="Metatron Belgeleri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Metatron Belgeleri
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Fonksiyonlar ve React
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Açık temaya geç"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Açık temaya geç" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Koyu temaya geç"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Koyu temaya geç" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Ara" placeholder="Ara" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Ara">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Temizle" aria-label="Temizle" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Arama başlatılıyor
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/METANETSOFT/metatron" title="Depoya git" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigasyon" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Metatron Belgeleri" class="md-nav__button md-logo" aria-label="Metatron Belgeleri" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Metatron Belgeleri
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/METANETSOFT/metatron" title="Depoya git" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Başlangıç
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rehber
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Rehber
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metatron'a giriş
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kurulum/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kurulum ve ilk sorgu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../react-ormim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Şema — React ORM (ORMIM)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fonksiyonlar ve React
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fonksiyonlar ve React
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fonksiyon-yazmak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fonksiyon yazmak
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uc-tip-query-mutation-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Üç tip: query, mutation, action
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ctx-fonksiyonun-elindekiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ctx: fonksiyonun elindekiler
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determinizm-kural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Determinizm kuralı
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#panel-taraf-registry-ve-read-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Panel tarafı: registry ve read-set
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reactten-cagrmak-usequery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        React'ten çağırmak: useQuery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yazmak-usemutation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yazmak: useMutation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Yazmak: useMutation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimistic-katman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimistic katman
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reaktivite-sse-websocket-yok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reaktivite: SSE, websocket YOK
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRUD — okuma ve yazma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dallar-ve-merge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dallar ve merge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mimari/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mimari
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../baglanma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bağlanma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dallar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dallar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../istemci/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    İstemci (Faz 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ormim/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ORMIM ve metatron dev (Faz 2)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../merge-motoru/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merge motoru (Faz 2.5)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maskeleme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maskeleme
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../roller/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roller
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../workspace-yetki/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workspace ve yetki
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../kolon-paylasimi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kolon paylaşımı
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage (S3/MinIO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sorgu-icgoruleri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sorgu içgörüleri
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pitr/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PITR (geri dönüş)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Site planı (meta)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fonksiyon-yazmak" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fonksiyon yazmak
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uc-tip-query-mutation-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Üç tip: query, mutation, action
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ctx-fonksiyonun-elindekiler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ctx: fonksiyonun elindekiler
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determinizm-kural" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Determinizm kuralı
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#panel-taraf-registry-ve-read-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Panel tarafı: registry ve read-set
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reactten-cagrmak-usequery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        React'ten çağırmak: useQuery
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yazmak-usemutation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yazmak: useMutation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Yazmak: useMutation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimistic-katman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimistic katman
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reaktivite-sse-websocket-yok" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reaktivite: SSE, websocket YOK
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="fonksiyonlar-ve-react">Fonksiyonlar ve React<a class="headerlink" href="#fonksiyonlar-ve-react" title="Permanent link">&para;</a></h1>
+<p>Metatron'da backend, HTTP uçları yerine <strong>adlandırılmış TypeScript
+fonksiyonlarıdır</strong>: <code>functions/</code> altına yazdığın her export <code>dosya/yol:export</code>
+adıyla çağrılır, React tarafında <code>useQuery</code> ve <code>useMutation</code> bu adları string
+olarak kullanır.</p>
+<p>Bu sayfadaki React örneklerinin tamamı canlı panele karşı render edilerek
+doğrulanmıştır (react-test-renderer + dogfood paneli).</p>
+<h2 id="fonksiyon-yazmak">Fonksiyon yazmak<a class="headerlink" href="#fonksiyon-yazmak" title="Permanent link">&para;</a></h2>
+<p>Bir fonksiyon, <code>query</code> / <code>mutation</code> / <code>action</code> helper'larından biriyle
+tanımlanmış bir export'tur. İsim kontratı: <code>functions/</code> köküne göre dosya yolu
++ <code>:</code> + export adı — <code>functions/examples/demo.ts</code> içindeki <code>export const hello</code>,
+istemciden <strong><code>examples/demo:hello</code></strong> diye çağrılır. <code>_</code> ile başlayan dosyalar
+altyapı sayılır ve yüklenmez.</p>
+<p>Gerçek bir örnek (repodaki <code>functions/examples/demo.ts</code>'den):</p>
+<pre><code class="language-ts">import { query, mutation } from '../runtime'
+
+export const hello = query({
+  handler: (_ctx, args: { name?: string }) =&gt; ({
+    message: `merhaba ${args.name ?? 'metatron'}`,
+  }),
+})
+
+export const bump = mutation({
+  handler: (_ctx, args: { by?: number }) =&gt; {
+    state.bumpCount += args.by ?? 1
+    return { count: state.bumpCount }
+  },
+})
+</code></pre>
+<h2 id="uc-tip-query-mutation-action">Üç tip: query, mutation, action<a class="headerlink" href="#uc-tip-query-mutation-action" title="Permanent link">&para;</a></h2>
+<p>Ayrım yetkiyle ilgilidir — fonksiyonun neye <em>izinli</em> olduğunu tip belirler:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>query</th>
+<th>mutation</th>
+<th>action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DB erişimi</td>
+<td>okuma (<code>ctx.db.query</code>)</td>
+<td>okuma + yazma</td>
+<td>yok — <code>ctx.runQuery/runMutation/runAction</code> ile dolaylı</td>
+</tr>
+<tr>
+<td>Transactional</td>
+<td>evet</td>
+<td>evet (tek tx; throw → <strong>hiçbir şey yazılmaz</strong>)</td>
+<td>hayır</td>
+</tr>
+<tr>
+<td>Deterministik</td>
+<td>zorunlu</td>
+<td>zorunlu</td>
+<td>serbest</td>
+</tr>
+<tr>
+<td><code>fetch</code> / dış dünya</td>
+<td>yok</td>
+<td>yok</td>
+<td>evet</td>
+</tr>
+<tr>
+<td>Cache + reaktif subscribe</td>
+<td>evet</td>
+<td>hayır</td>
+<td>hayır</td>
+</tr>
+</tbody>
+</table>
+<p>Anti-pattern: istemciden doğrudan action çağırmak. Önerilen desen: mutation
+intent'i yazar ve <code>ctx.scheduler.runAfter(0, 'dosya/yol:isim', args)</code> ile
+action'ı arka planda tetikler.</p>
+<h2 id="ctx-fonksiyonun-elindekiler">ctx: fonksiyonun elindekiler<a class="headerlink" href="#ctx-fonksiyonun-elindekiler" title="Permanent link">&para;</a></h2>
+<p>Handler'ın ilk argümanı <code>ctx</code>, tipe göre kısıtlanır:</p>
+<ul>
+<li><strong>QueryCtx</strong>: <code>{ db, auth, storage }</code> — <code>db</code> salt-okur (<code>ctx.db.query</code>),
+  scheduler yok.</li>
+<li><strong>MutationCtx</strong>: <code>{ db, auth, scheduler, storage }</code> — <code>db</code> okur+yazar
+  (<code>ctx.db.mutation</code>), <code>scheduler.runAfter / runAt / cancel</code>.</li>
+<li><strong>ActionCtx</strong>: <code>{ auth, scheduler, storage, runQuery, runMutation, runAction }</code> —
+  <code>db</code> yok.</li>
+</ul>
+<p><code>ctx.db</code>'nin imzası istemciyinkiyle aynıdır (kilitli karar: worker doğrudan
+Postgres'e gitmez; kullanıcı verisi trafiği panel <code>/fn</code> uçları üzerinden akar):</p>
+<pre><code class="language-ts">// functions/examples/candidates.ts'den (gerçek):
+export const list = query({
+  handler: async (ctx, args: { status?: CandidateStatus; limit?: number }) =&gt; {
+    const res = await ctx.db.query&lt;Candidate[]&gt;('data/candidates:list', {
+      status: args.status ?? null,
+      limit: Math.min(Math.max(args.limit ?? 50, 1), 100),
+    })
+    return res.value
+  },
+})
+</code></pre>
+<h2 id="determinizm-kural">Determinizm kuralı<a class="headerlink" href="#determinizm-kural" title="Permanent link">&para;</a></h2>
+<p>Query ve mutation <strong>deterministik</strong> olmak zorundadır — query cache, reaktivite
+ve retry semantiği buna dayanır. Bunu sana bırakmaz; runtime shim'i sağlar
+(<code>functions/_determinism.ts</code>, Faz 3c):</p>
+<ul>
+<li><code>Math.random()</code> → seeded PRNG (tohum, çağrının implicit parametresi),</li>
+<li><code>Date.now()</code> / <code>new Date()</code> → fonksiyon başlangıcında <strong>donmuş</strong>,</li>
+<li><code>crypto.getRandomValues</code> / <code>randomUUID</code> → seeded.</li>
+</ul>
+<p>Action'da shim yoktur: <code>fetch</code>, saat, rastgelelik serbesttir; karşılığında DB'ye
+doğrudan erişemez ve scheduled çalışma garantisi at-most-once'tur. Pratik sonuç:
+query/mutation içinde rastgelelik ve saat kullanmaktan çekinme — aynı arg'larla
+aynı cevabı ürettiğin sürece shim senin tarafındadır; ama dış API'ye sadece
+action'dan çık.</p>
+<h2 id="panel-taraf-registry-ve-read-set">Panel tarafı: registry ve read-set<a class="headerlink" href="#panel-taraf-registry-ve-read-set" title="Permanent link">&para;</a></h2>
+<p>Fonksiyonlar panelde bir registry'ye <code>kind</code> + <code>tables</code> + <code>run</code> ile kaydolur
+(v1'de panel içi; fn-worker'a taşınması Faz 3 hattındadır). <code>tables</code> beyanı
+zorunludur — <strong>read-set</strong>'tir: hangi tablo değişince bu sorgunun yeniden
+koşacağını reaktivite buradan bilir (v1'de kesişim tablo seviyesindedir).</p>
+<p>Dogfood panelinde kayıtlı demo fonksiyonlar (rehberin canlı örnekleri bunlarla
+koşuldu):</p>
+<table>
+<thead>
+<tr>
+<th>Ad</th>
+<th>kind</th>
+<th>read-set</th>
+<th>Ne yapar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>branches:list</code></td>
+<td>query</td>
+<td><code>branches</code></td>
+<td>canlı dalları listeler</td>
+</tr>
+<tr>
+<td><code>branches:get</code></td>
+<td>query</td>
+<td><code>branches</code></td>
+<td>tek dal (<code>args.slug</code> zorunlu)</td>
+</tr>
+<tr>
+<td><code>audit:note</code></td>
+<td>mutation</td>
+<td><code>audit_log</code></td>
+<td>deney notu yazar; <code>{ id, message }</code> döner</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reactten-cagrmak-usequery">React'ten çağırmak: <code>useQuery</code><a class="headerlink" href="#reactten-cagrmak-usequery" title="Permanent link">&para;</a></h2>
+<p><code>useQuery(fn, args)</code>, sorguyu çalıştırır, sonucu döner ve <strong>subscribe olur</strong> —
+read-set'le kesişen bir yazma olunca yeni sonuç kendiliğinden düşer. Ayrı bir
+<code>useSubscribe</code> hook'u yoktur; <code>useQuery</code> zaten subscribe'dır.</p>
+<pre><code class="language-tsx">import { useQuery } from &quot;metatron-react&quot;;
+
+function DalListesi() {
+  const dallar = useQuery(&quot;branches:list&quot;, {});
+  if (dallar === undefined) return &lt;span&gt;yükleniyor…&lt;/span&gt;;
+  return &lt;span&gt;{dallar.length} dal: {dallar[0].slug}&lt;/span&gt;;
+}
+</code></pre>
+<p>Üç davranışı bil (üçü de canlı render testinde doğrulandı):</p>
+<ul>
+<li><strong><code>undefined</code> = yükleniyor.</strong> İlk sonuç gelene kadar hook <code>undefined</code> döner;
+  loading dalını sen yazarsın.</li>
+<li><strong>Hata → error boundary.</strong> Sorgu hatası render sırasında throw edilir; en
+  yakın error boundary yakalar (canlı testte <code>BAD_ARGS</code> boundary'de göründü).</li>
+<li><strong><code>"skip"</code> = şimdilik sorma.</strong> <code>useQuery(fn, "skip")</code> subscribe olmaz, hep
+  <code>undefined</code> döner — koşullu sorgular için:</li>
+</ul>
+<pre><code class="language-tsx">function TekDal({ slug }: { slug: string | null }) {
+  const dal = useQuery(&quot;branches:get&quot;, slug ? { slug } : &quot;skip&quot;);
+  return &lt;span&gt;{dal ? dal.gitRef : &quot;kapalı&quot;}&lt;/span&gt;;
+}
+</code></pre>
+<p>Args derin eşitliği JSON anahtarıyla yapılır: render'da yeni obje literal'i
+yazman yeniden subscribe'a yol açmaz; içerik değişince sorgu kendiliğinden
+yenilenir.</p>
+<h2 id="yazmak-usemutation">Yazmak: <code>useMutation</code><a class="headerlink" href="#yazmak-usemutation" title="Permanent link">&para;</a></h2>
+<p><code>useMutation(fn)</code> stabil referanslı bir <strong>mutator</strong> döner; <code>mutator(args)</code>
+<code>Promise&lt;{ value, version }&gt;</code> verir:</p>
+<pre><code class="language-tsx">import { useMutation } from &quot;metatron-react&quot;;
+
+function NotYazan() {
+  const not = useMutation(&quot;audit:note&quot;);
+  return (
+    &lt;button onClick={() =&gt; not({ message: &quot;panelden selam&quot; })}&gt;
+      Not düş
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+<p>Mutator referansı render'lar arasında sabittir (canlı testte <code>mutatorRef === m1</code>
+doğrulandı) — efekt bağımlılıklarına güvenle koyarsın. Her çağrıya
+<code>Idempotency-Key</code> client tarafından otomatik üretilir; ağ kopup tekrar
+denesen bile iş iki kez yazılmaz (ayrıntı: <a href="../crud/">CRUD</a>).</p>
+<h3 id="optimistic-katman">Optimistic katman<a class="headerlink" href="#optimistic-katman" title="Permanent link">&para;</a></h3>
+<p><code>mutator.withOptimisticUpdate((store, args) =&gt; …)</code>, mutation cevabı gelmeden
+sonucu arayüze yansıtır. Update <strong>senkron</strong> çalışır — izleyiciler fetch'ten
+önce görür; cevabın versiyonu yakalanınca katman düşer, hata olursa geri
+alınır ve hata fırlar:</p>
+<pre><code class="language-ts">const note = useMutation(&quot;audit:note&quot;).withOptimisticUpdate((store, args) =&gt; {
+  const cur = store.get(&quot;branches:list&quot;, {});     // izlenen sorgunun güncel değeri
+  store.set(&quot;branches:list&quot;, {}, [yeniSatir, ...cur]);
+});
+</code></pre>
+<p><code>store.get(fn, args)</code> / <code>store.set(fn, args, value)</code> — anahtar, <code>useQuery</code>'nin
+kullandığı <code>(fn, args)</code> çiftidir.</p>
+<h2 id="reaktivite-sse-websocket-yok">Reaktivite: SSE, websocket YOK<a class="headerlink" href="#reaktivite-sse-websocket-yok" title="Permanent link">&para;</a></h2>
+<p>Değişim sinyali Postgres'ten gelir: yazan transaction içinde
+<code>NOTIFY metatron_changes</code> düşer, panel read-set kesişimini hesaplar ve etkilenen
+sorguyu yeniden koşup sonucu <strong>SSE</strong> (<code>GET /fn/listen</code>) ile iter. Mimari
+tercih bilinçlidir: websocket yoktur — tek EventSource bağlantısı tüm
+subscription'ları multiplex'ler, kopmada 0,5→16 sn jitter'lı backoff ve
+<code>Last-Event-ID</code> ile resume eder, server gap sezerse <code>resync</code> olayı tüm
+sorguları tazeler; sekme odağa dönünce de stale sub'lar yeniden sorgulanır.</p>
+<p>React'siz ortamda (script, worker, test) aynı mekanizma <code>watchQuery</code> ile
+kullanılır — hook'ların altındaki çekirdek budur:</p>
+<pre><code class="language-ts">const h = client.watchQuery(&quot;branches:get&quot;, { slug: &quot;merge-main&quot; });
+const unsub = h.subscribe(({ value, version }) =&gt; console.log(value.slug, version));
+h.get();    // son değer senkron (ilk sonuç yoksa undefined)
+h.close();  // subscription'ı kapat
+</code></pre>
+<p>Şimdi şunu yapabileceksin: fonksiyon yazıp React ağacına canlı, kendiliğinden
+güncellenen veri bağlamak. Sıra günlük işlerde: filtreli okuma, insert/update/
+delete, hata ve rol yönetimi — <a href="../crud/">CRUD</a>.</p>
+<p>İlgili: <a href="../../istemci/">istemci</a> (tel kontratı) · <code>functions/README.md</code> (worker,
+cron, loader detayı)</p>
+<blockquote>
+<p>Kaynak: <code>metatron/CONTRACT.md</code> · <code>functions/runtime.ts</code> + <code>_determinism.ts</code> ·
+<code>panel/src/fn/registry.ts</code> (demo registry) · canlı doğrulama: dogfood :55441,
+2026-08-02 (<code>/tmp/rehber-test/01-…03-*.mjs</code> — query/mutation/watch/render)</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Başa dön
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

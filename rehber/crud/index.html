@@ -10,31 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://metanetsoft.github.io/metatron/baglanma/">
+        <link rel="canonical" href="https://metanetsoft.github.io/metatron/rehber/crud/">
       
       
-        <link rel="prev" href="../mimari/">
+        <link rel="prev" href="../react-fonksiyonlar/">
       
       
-        <link rel="next" href="../dallar/">
+        <link rel="next" href="../dallar-ve-merge/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Bağlanma - Metatron Belgeleri</title>
+        <title>CRUD — okuma ve yazma - Metatron Belgeleri</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,7 +53,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#baglanma" class="md-skip">
+        <a href="#crud-okuma-ve-yazma" class="md-skip">
           Ana içeriğe geç
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Başlık">
-    <a href=".." title="Metatron Belgeleri" class="md-header__button md-logo" aria-label="Metatron Belgeleri" data-md-component="logo">
+    <a href="../.." title="Metatron Belgeleri" class="md-header__button md-logo" aria-label="Metatron Belgeleri" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Bağlanma
+              CRUD — okuma ve yazma
             
           </span>
         </div>
@@ -230,7 +230,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigasyon" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Metatron Belgeleri" class="md-nav__button md-logo" aria-label="Metatron Belgeleri" data-md-component="logo">
+    <a href="../.." title="Metatron Belgeleri" class="md-nav__button md-logo" aria-label="Metatron Belgeleri" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -260,7 +260,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -284,18 +284,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -316,7 +318,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -334,7 +336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rehber/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -362,7 +364,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rehber/kurulum/" class="md-nav__link">
+      <a href="../kurulum/" class="md-nav__link">
         
   
   
@@ -390,7 +392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rehber/react-ormim/" class="md-nav__link">
+      <a href="../react-ormim/" class="md-nav__link">
         
   
   
@@ -418,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rehber/react-fonksiyonlar/" class="md-nav__link">
+      <a href="../react-fonksiyonlar/" class="md-nav__link">
         
   
   
@@ -443,10 +445,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../rehber/crud/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CRUD — okuma ve yazma
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -462,6 +491,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      İçindekiler
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#okuma-filtre-sorgunun-arguman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Okuma: filtre = sorgunun argümanı
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#yazma-insert-update-delete-uc-mutation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yazma: insert / update / delete = üç mutation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-tekrar-denemek-guvenli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency: tekrar denemek güvenli
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hata-zarf-ve-metatronerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hata zarfı ve MetatronError
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roller-okuyucu-okur-gelistirici-yazar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roller: Okuyucu okur, Geliştirici yazar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimistic-yazma-hata-geri-almas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimistic yazma + hata geri alması
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -474,7 +589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rehber/dallar-ve-merge/" class="md-nav__link">
+      <a href="../dallar-ve-merge/" class="md-nav__link">
         
   
   
@@ -509,7 +624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../mimari/" class="md-nav__link">
+      <a href="../../mimari/" class="md-nav__link">
         
   
   
@@ -533,37 +648,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bağlanma
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../baglanma/" class="md-nav__link">
         
   
   
@@ -579,70 +667,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="İçindekiler">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      İçindekiler
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#baglant-dizesi-semas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Bağlantı dizesi şeması
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#neden-sabit-dize" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Neden sabit dize?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tls-kendinden-imzal-su-an" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        TLS — kendinden imzalı (şu an)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#durust-durum" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dürüst durum
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -654,7 +678,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../dallar/" class="md-nav__link">
+      <a href="../../dallar/" class="md-nav__link">
         
   
   
@@ -681,7 +705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../istemci/" class="md-nav__link">
+      <a href="../../istemci/" class="md-nav__link">
         
   
   
@@ -708,7 +732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ormim/" class="md-nav__link">
+      <a href="../../ormim/" class="md-nav__link">
         
   
   
@@ -735,7 +759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../merge-motoru/" class="md-nav__link">
+      <a href="../../merge-motoru/" class="md-nav__link">
         
   
   
@@ -762,7 +786,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../maskeleme/" class="md-nav__link">
+      <a href="../../maskeleme/" class="md-nav__link">
         
   
   
@@ -789,7 +813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../roller/" class="md-nav__link">
+      <a href="../../roller/" class="md-nav__link">
         
   
   
@@ -816,7 +840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../workspace-yetki/" class="md-nav__link">
+      <a href="../../workspace-yetki/" class="md-nav__link">
         
   
   
@@ -843,7 +867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kolon-paylasimi/" class="md-nav__link">
+      <a href="../../kolon-paylasimi/" class="md-nav__link">
         
   
   
@@ -870,7 +894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../storage/" class="md-nav__link">
+      <a href="../../storage/" class="md-nav__link">
         
   
   
@@ -897,7 +921,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../sorgu-icgoruleri/" class="md-nav__link">
+      <a href="../../sorgu-icgoruleri/" class="md-nav__link">
         
   
   
@@ -924,7 +948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../pitr/" class="md-nav__link">
+      <a href="../../pitr/" class="md-nav__link">
         
   
   
@@ -951,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../PLAN/" class="md-nav__link">
+      <a href="../../PLAN/" class="md-nav__link">
         
   
   
@@ -998,10 +1022,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#baglant-dizesi-semas" class="md-nav__link">
+  <a href="#okuma-filtre-sorgunun-arguman" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Bağlantı dizesi şeması
+        Okuma: filtre = sorgunun argümanı
       
     </span>
   </a>
@@ -1009,10 +1033,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#neden-sabit-dize" class="md-nav__link">
+  <a href="#yazma-insert-update-delete-uc-mutation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Neden sabit dize?
+        Yazma: insert / update / delete = üç mutation
       
     </span>
   </a>
@@ -1020,10 +1044,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#tls-kendinden-imzal-su-an" class="md-nav__link">
+  <a href="#idempotency-tekrar-denemek-guvenli" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TLS — kendinden imzalı (şu an)
+        Idempotency: tekrar denemek güvenli
       
     </span>
   </a>
@@ -1031,10 +1055,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#durust-durum" class="md-nav__link">
+  <a href="#hata-zarf-ve-metatronerror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dürüst durum
+        Hata zarfı ve MetatronError
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roller-okuyucu-okur-gelistirici-yazar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roller: Okuyucu okur, Geliştirici yazar
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimistic-yazma-hata-geri-almas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimistic yazma + hata geri alması
       
     </span>
   </a>
@@ -1061,73 +1107,209 @@
   
 
 
-<h1 id="baglanma">Bağlanma<a class="headerlink" href="#baglanma" title="Permanent link">&para;</a></h1>
-<p>Her veritabanına ve dala <strong>aynı adresten</strong> bağlanırsın: tek sabit gateway portu.
-Worker adı, worker IP'si, dal portu bilmen gerekmez — yönlendirme gateway'in içinde,
-kullanıcı adına bakılarak yapılır.</p>
-<h2 id="baglant-dizesi-semas">Bağlantı dizesi şeması<a class="headerlink" href="#baglant-dizesi-semas" title="Permanent link">&para;</a></h2>
-<pre><code>postgresql://br_DAL-SLUG:SIFRE@GATEWAY:PORT/main
+<h1 id="crud-okuma-ve-yazma">CRUD: okuma ve yazma<a class="headerlink" href="#crud-okuma-ve-yazma" title="Permanent link">&para;</a></h1>
+<p>React tarafında CRUD'un karşılığı iki hook'tur: okuma <code>useQuery</code> + filtre
+argümanları, yazma <code>useMutation</code> + bir mutation fonksiyonu. "get/set/put"
+yoktur — her iş, adı olan bir fonksiyon çağrısıdır; bu sayede her okuma
+reaktiftir ve her yazma tek transaction'dır.</p>
+<p>Bu sayfadaki istemci çıktıları canlı dogfood paneline karşı çalıştırılmıştır.</p>
+<h2 id="okuma-filtre-sorgunun-arguman">Okuma: filtre = sorgunun argümanı<a class="headerlink" href="#okuma-filtre-sorgunun-arguman" title="Permanent link">&para;</a></h2>
+<p>Okuma işini bir <code>query</code> fonksiyonu yapar; filtre, fonksiyonun <code>args</code>'ıdır.
+Arayüz tarafında <code>useQuery(fn, args)</code> args değişince sorguyu kendiliğinden
+yeniler — <code>useEffect</code> ile senkronlama yazmazsın.</p>
+<p>Fn tarafı (repodaki <code>examples/candidates.ts</code> deseniyle):</p>
+<pre><code class="language-ts">// functions/blog/posts.ts
+import { query } from '../runtime'
+
+export const list = query({
+  handler: async (ctx, args: { publishedOnly?: boolean; limit?: number }) =&gt; {
+    const res = await ctx.db.query('data/posts:list', {
+      publishedOnly: args.publishedOnly ?? false,
+      limit: Math.min(Math.max(args.limit ?? 50, 1), 100),
+    })
+    return res.value
+  },
+})
 </code></pre>
+<p>React tarafı:</p>
+<pre><code class="language-tsx">function Yazilar({ publishedOnly }: { publishedOnly: boolean }) {
+  const posts = useQuery(&quot;blog/posts:list&quot;, { publishedOnly });
+  if (posts === undefined) return &lt;span&gt;yükleniyor…&lt;/span&gt;;
+  return &lt;ul&gt;{posts.map((p) =&gt; &lt;li key={p.id}&gt;{p.title}&lt;/li&gt;)}&lt;/ul&gt;;
+}
+</code></pre>
+<p><code>publishedOnly</code> değiştiğinde sorgu yeniden koşar; <code>posts</code> tablosuna başka bir
+istemci yazsa bile sonuç SSE ile düşer. Koşullu sorgu için <code>useQuery(fn, "skip")</code>.</p>
+<blockquote>
+<p><strong>data/* fonksiyonları nereden geliyor?</strong> <code>ctx.db.query/mutation</code> ile
+çağrılan <code>data/posts:list</code> gibi isimler, panel tarafında registry'ye
+yazdığın kendi veri fonksiyonlarındır (<code>candidates.ts</code>'deki desenin aynısı;
+registry kaydı <code>kind</code> + <code>tables</code> + <code>run</code> ister). ORMIM şemasından otomatik
+data-fn üretimi v1 kapsamı dışındadır — o gelene kadar CRUD fn'leri bu desenle
+elle yazılır. Worker'sız küçük kurulumlarda panel-içi registry tek başına
+yeterlidir (dogfood'daki <code>branches:list</code> böyledir).</p>
+</blockquote>
+<h2 id="yazma-insert-update-delete-uc-mutation">Yazma: insert / update / delete = üç mutation<a class="headerlink" href="#yazma-insert-update-delete-uc-mutation" title="Permanent link">&para;</a></h2>
+<p>Yazma işleri <code>mutation</code> ile tanımlanır. Üç temel iş aynı kapıdan geçer; ayrı
+fn'ler olarak yazılır çünkü her birinin argümanı ve read-set beyanı farklıdır:</p>
+<pre><code class="language-ts">// functions/blog/posts.ts (devamı)
+import { mutation } from '../runtime'
+
+export const create = mutation({
+  handler: async (ctx, args: { title: string; body: string }) =&gt; {
+    const res = await ctx.db.mutation&lt;{ id: string }&gt;('data/posts:create', args)
+    return res.value                      // { id } — id'yi uuidv7() üretti
+  },
+})
+
+export const update = mutation({
+  handler: async (ctx, args: { id: string; title?: string; body?: string }) =&gt; {
+    const res = await ctx.db.mutation('data/posts:update', args)
+    return res.value
+  },
+})
+
+export const remove = mutation({
+  handler: async (ctx, args: { id: string }) =&gt; {
+    await ctx.db.mutation('data/posts:remove', { id: args.id })
+    return { ok: true }
+  },
+})
+</code></pre>
+<p>React tarafında her biri stabil bir mutator'dır:</p>
+<pre><code class="language-tsx">function YaziFormu() {
+  const create = useMutation(&quot;blog/posts:create&quot;);
+  return (
+    &lt;button onClick={async () =&gt; {
+      const { value } = await create({ title: &quot;ilk yazı&quot;, body: &quot;merhaba&quot; });
+      console.log(&quot;yeni yazı:&quot;, value.id);
+    }}&gt;
+      Yayınla
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+<p>Mutation'ın throw etmesi <strong>hiçbir şey yazılmadı</strong> demektir — iş tek
+transaction'dır; yarım kayıt kalmaz.</p>
+<h2 id="idempotency-tekrar-denemek-guvenli">Idempotency: tekrar denemek güvenli<a class="headerlink" href="#idempotency-tekrar-denemek-guvenli" title="Permanent link">&para;</a></h2>
+<p>Her mutation isteği zorunlu <code>Idempotency-Key: &lt;uuid&gt;</code> header'ı taşır; client
+bunu her çağrıda otomatik üretir. Aynı key ile gelen tekrar işi <strong>çalıştırmaz</strong>,
+saklanan ilk cevabı <code>"replay": true</code> ile döner. Ağ koptu, kullanıcı çift
+tıkladı, retry attı — hepsi aynı kayda düşer.</p>
+<p>Canlı kanıt (aynı key ile iki istek, birebir çıktı):</p>
+<pre><code># birinci istek
+{&quot;value&quot;:{&quot;id&quot;:&quot;019fbfd8-5404-7249-af81-52f503d33a41&quot;,&quot;message&quot;:&quot;rehber dogfood testi 1&quot;},&quot;version&quot;:&quot;1347&quot;}
+# aynı Idempotency-Key ile tekrar
+{&quot;value&quot;:{&quot;id&quot;:&quot;019fbfd8-5404-7249-af81-52f503d33a41&quot;,...},&quot;version&quot;:&quot;1347&quot;,&quot;replay&quot;:true}
+# key'siz mutation
+{&quot;error&quot;:{&quot;code&quot;:&quot;IDEMPOTENCY_KEY_REQUIRED&quot;,&quot;message&quot;:&quot;Idempotency-Key header zorunlu&quot;}}
+</code></pre>
+<p>Aynı <code>id</code>'nin döndüğüne dikkat et — ikinci çağrıda insert koşmadı.</p>
+<h2 id="hata-zarf-ve-metatronerror">Hata zarfı ve <code>MetatronError</code><a class="headerlink" href="#hata-zarf-ve-metatronerror" title="Permanent link">&para;</a></h2>
+<p>Hatalar her uçta aynı zarfla döner: <code>{ "error": { "code", "message", "data"? } }</code>.
+Client bunu <code>MetatronError</code>'a çevirir — <code>code</code>, <code>message</code>, <code>data</code>, <code>status</code>
+alanlarıyla yakalarsın:</p>
+<pre><code class="language-ts">import { MetatronError } from &quot;metatron-client&quot;;
+
+try {
+  await client.query(&quot;branches:get&quot;, {});          // slug eksik
+} catch (e) {
+  if (e instanceof MetatronError) {
+    e.code;     // &quot;BAD_ARGS&quot;
+    e.status;   // 400
+    e.message;  // &quot;args.slug (string) gerekli&quot;
+  }
+}
+</code></pre>
+<p>Canlı panelden doğrulanan kodlar:</p>
 <table>
 <thead>
 <tr>
-<th>Parça</th>
-<th>Anlamı</th>
+<th>HTTP</th>
+<th>code</th>
+<th>Ne zaman</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>br_DAL-SLUG</code></td>
-<td>dalın rolü — gateway yönlendirmeyi bu kullanıcı adından okur</td>
+<td>400</td>
+<td><code>BAD_ARGS</code></td>
+<td>fn argüman doğrulaması reddetti</td>
 </tr>
 <tr>
-<td><code>main</code></td>
-<td>dalın gerçek veritabanı (her dal kendi Postgres'inde <code>main</code> taşır)</td>
+<td>400</td>
+<td><code>WRONG_KIND</code></td>
+<td>query'yi <code>/fn/mutation</code>'a (veya tersi) gönderdin</td>
 </tr>
 <tr>
-<td><code>GATEWAY:PORT</code></td>
-<td>her DB ve dal için aynı, sabit</td>
+<td>400</td>
+<td><code>IDEMPOTENCY_KEY_REQUIRED</code></td>
+<td>mutation'da key header'ı yok</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>UNAUTHENTICATED</code></td>
+<td>token eksik/geçersiz</td>
+</tr>
+<tr>
+<td>403</td>
+<td><code>FORBIDDEN</code></td>
+<td>rolün yetmiyor (aşağıda)</td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>FN_NOT_FOUND</code> / <code>NOT_FOUND</code></td>
+<td>fonksiyon ya da kayıt yok</td>
+</tr>
+<tr>
+<td>409</td>
+<td><code>PLAN_STALE</code> / <code>PLAN_CONFLICT</code></td>
+<td>merge akışı (<a href="../dallar-ve-merge/">sonraki sayfa</a>)</td>
+</tr>
+<tr>
+<td>500</td>
+<td><code>FN_ERROR</code></td>
+<td>fn içinde beklenmeyen hata</td>
 </tr>
 </tbody>
 </table>
-<p>Sorgu parametresi YOK — dize stok libpq ve her sürücüyle olduğu gibi çalışır.
-Slug dal adından türetilir ve proje-kapsam hash'i taşır (<code>feat/linkedin-url</code> →
-<code>feat_linkedin_url_9c07b9e1a2</code> gibi); tam rol adını paneldeki Kopyala düğmesi verir.
-Opsiyonel <code>br_DAL-SLUG@org</code> biçimi de kabul edilir: <code>@org</code> parçası ayrıştırılır,
-arka uca her zaman <code>br_DAL-SLUG</code> gider.</p>
-<pre><code class="language-bash">psql &quot;postgresql://br_main:SIFRE@GATEWAY:PORT/main?sslmode=require&quot;
-psql &quot;postgresql://br_feat_linkedin_url_9c07b9e1a2:SIFRE@GATEWAY:PORT/main?sslmode=require&quot;
+<p>İki kural:</p>
+<ul>
+<li><strong>Query hatası retry edilmez.</strong> Deterministik fonksiyon aynı arg'larla aynı
+  hatayı verir; client hatayı doğrudan fırlatır. React'te bu, error boundary'ye
+  düşer.</li>
+<li><strong>Fn kendi kodunu dönebilir.</strong> Panel-içi fn'lerde <code>FnError(code, message, data?)</code>
+  fırlatırsan zarfın kodu aynen iletilir, HTTP status'ü tablodan seçilir.</li>
+</ul>
+<h2 id="roller-okuyucu-okur-gelistirici-yazar">Roller: Okuyucu okur, Geliştirici yazar<a class="headerlink" href="#roller-okuyucu-okur-gelistirici-yazar" title="Permanent link">&para;</a></h2>
+<p><code>/fn/query</code> ve <code>/fn/listen</code> rol kapısı yoktur — Okuyucu dahil her token okur.
+<code>/fn/mutation</code> en az <strong>Geliştirici</strong> ister. Okuyucu token'ıyla yazma denemesi:</p>
+<pre><code class="language-json">{
+  &quot;error&quot;: {
+    &quot;code&quot;: &quot;FORBIDDEN&quot;,
+    &quot;message&quot;: &quot;bu islem icin en az Geliştirici rolu gerekir (mevcut rol: Okuyucu)&quot;
+  }
+}
 </code></pre>
-<p>Dize dalın rolüne aittir — üye bazlı kimlik ileride geliyor; rol parolasını bilen
-o dalın yetkisiyle bağlanır. Parola panelde <strong>bir kez</strong> gösterilir. Kendi parolanı
-döndürebilirsin; başkasınınkini yalnız Yönetici döndürür → <a href="../roller/">roller</a>.</p>
-<h2 id="neden-sabit-dize">Neden sabit dize?<a class="headerlink" href="#neden-sabit-dize" title="Permanent link">&para;</a></h2>
-<p>DB bir worker'dan diğerine taşındığında (snapshot → <code>zfs send</code> → receive →
-yönlendirme güncelleme) değişen tek şey gateway'in içindeki yönlendirme kuralıdır.
-Bağlantı dizesi <strong>bayt bayt aynı kalır</strong> — uygulama config'i, CI secret'ı, yerel
-<code>.env</code> dokunulmaz. Bu kilitli ürün kararıdır (2026-07-31).</p>
-<h2 id="tls-kendinden-imzal-su-an">TLS — kendinden imzalı (şu an)<a class="headerlink" href="#tls-kendinden-imzal-su-an" title="Permanent link">&para;</a></h2>
-<p>TLS'i gateway/PgBouncer sonlandırır: internet bacağı şifreli, iç ağ bacağı değil.
-Sertifika şu an <strong>kendinden imzalı</strong>, yani:</p>
-<ul>
-<li><code>sslmode=require</code> — trafik şifrelenir ama sertifika doğrulanmaz (bugünkü pratik).</li>
-<li>Tam doğrulama (<code>verify-full</code>) istersen CA/sertifikayı istemcinin güvenilir
-  deposuna eklemen gerekir. Let's Encrypt gibi gerçek sertifika ileride gateway'e
-  takılır; dize yine değişmez.</li>
-</ul>
-<h2 id="durust-durum">Dürüst durum<a class="headerlink" href="#durust-durum" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Bugün canlıda TLS'i <strong>PgBouncer</strong> sonlandırır; dış port varsayılan <strong>6433</strong>
-  (<code>PGB_PUBLIC_PORT</code> — 5432 bilerek kullanılmaz, dünyanın taradığı ilk porttur).
-  Doğrudan PgBouncer'a ve SSH tüneliyle bağlantı canlı testten geçti.</li>
-<li>Kullanıcı-adıyla yönlendiren <strong>gateway katmanı</strong> kilitli karardır ve tasarımın
-  parçası olarak kurulmaktadır; üstteki dize şeması o hedefi anlatır. Kurulum
-  tamamlanana kadar panelin PR yorumundaki dizeyi ve tünel komutunu kullan.</li>
-</ul>
-<p>İlgili: <a href="../mimari/">mimari</a> · <a href="../dallar/">dallar</a> · <a href="../roller/">roller</a></p>
+<p>Rol hiyerarşisi <code>yonetici &gt; gelistirici &gt; okuyucu</code>'dur. Rol alanı olmayan eski
+token'lar tam yetkili sayılır (geriye uyum); tanınmayan rol değeri güvenli
+tarafa, Okuyucu'ya düşer. Token'a rol panelde API token'ı üretilirken verilir
+— uygulama içi kullanıcı yetkisi (workspace modeli) ayrı bir katmandır:
+<a href="../../workspace-yetki/">workspace ve yetki</a>.</p>
+<h2 id="optimistic-yazma-hata-geri-almas">Optimistic yazma + hata geri alması<a class="headerlink" href="#optimistic-yazma-hata-geri-almas" title="Permanent link">&para;</a></h2>
+<p><code>withOptimisticUpdate</code> katmanı cevaptan önce görünür; mutation hata verirse
+katman <strong>geri alınır</strong> ve hata çağırana fırlar (canlı doğrulandı: hatalı
+mutation sonrası izlenen sorgunun değeri katman öncesi hâline döndü). Yani
+optimistic UI için ayrıca "geri al" kodu yazmazsın — tek kural, update
+fonksiyonunun saf ve senkron olması.</p>
+<p>Şimdi şunu yapabileceksin: filtreli, reaktif okuma; tek transaction'lık
+insert/update/delete; idempotent ve rol-farkındaki yazma. Son adım: bu işi
+dallar arasında taşımak — <a href="../dallar-ve-merge/">Dallar ve merge</a>.</p>
+<p>İlgili: <a href="../../istemci/">istemci</a> · <a href="../../roller/">roller</a> · <a href="../react-fonksiyonlar/">fonksiyonlar ve React</a></p>
 <blockquote>
-<p>Kaynak: <code>PRODUCT.md</code> (ürün gerçeği: sabit adres) · tasarım <code>design/app.html</code>
-(pass 5: dize şeması) · <code>docker-compose.panel.yml</code> (port) · <code>TEST-REPORT.md</code></p>
+<p>Kaynak: <code>metatron/CONTRACT.md</code> · <code>panel/src/fn/routes.ts</code> (rol kapısı, hata
+tablosu) + <code>panel/src/roles.ts</code> (FORBIDDEN zarfı) · canlı çıktılar: dogfood
+:55441, 2026-08-02 (idempotency replay, hata zarfları, optimistic geri alma)</p>
 </blockquote>
 
 
@@ -1184,10 +1366,10 @@ Sertifika şu an <strong>kendinden imzalı</strong>, yani:</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.top", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.top", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopyaland\u0131", "clipboard.copy": "Kopyala", "search.result.more.one": "Bu sayfada 1 tane daha", "search.result.more.other": "Bu sayfada # tane daha", "search.result.none": "E\u015fle\u015fen dok\u00fcman bulunamad\u0131", "search.result.one": "1 dok\u00fcman bulundu", "search.result.other": "# dok\u00fcman bulundu", "search.result.placeholder": "Aramaya ba\u015flamak i\u00e7in yaz\u0131n", "search.result.term.missing": "Eksik", "select.version": "Versiyon se\u00e7"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
