@@ -75,6 +75,24 @@ export class ColumnBuilder<T, Nullable extends boolean> {
     return this;
   }
 
+  /**
+   * SQL ifadesini OLDUĞU GİBİ DEFAULT yapar — tırnaklanmaz.
+   *
+   * ⚠ NİYE GEREKLİ: `default('now()')` JS değeri olarak ele alınır ve
+   * `DEFAULT 'now()'` üretir. Postgres bu TIRNAKLI metni tablo yaratılırken
+   * BİR KEZ değerlendirip sabit bir damgaya dönüştürür — sonraki her satır
+   * aynı tarihi alır. Gerçek Postgres'te ölçüldü:
+   *   DEFAULT 'now()' → '2026-08-06 10:25:27+00'::timestamptz   (DONMUŞ)
+   *   DEFAULT now()   → now()                                    (her satırda)
+   * Bu tuzağa db-branching'in kontrol düzlemi düştü: 8 tablonun createdAt
+   * varsayılanı canlı DB'de tek bir tarihe çakılıydı.
+   */
+  defaultRaw(sql: string): this {
+    this._defaultRaw = sql;
+    this._hasDefault = true;
+    return this;
+  }
+
   unique(): this {
     this._unique = true;
     return this;
