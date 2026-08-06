@@ -200,10 +200,38 @@ export function columnValues(table: AnyTable): AnyColumn[] {
  * references(() => ...) ve Infer için). `columns`/`extras` adlı kolon isimleri
  * bu yüzden kullanılamaz.
  */
+/**
+ * Her tabloya `created_at` + `updated_at` ekler (kullanıcı kararı,
+ * db-branching#43 2026-08-06).
+ *
+ * ① ZATEN VARSA DOKUNULMAZ — ikinci kolon, aynı bilgiyi iki yerde tutardı.
+ * ② YAZIM MEVCUDA UYAR — `createdAt` varsa `updatedAt`, `created_at` varsa
+ *    `updated_at`. Karıştırmak hiçbir sözleşmeye uymayan bir tablo yaratır.
+ *    Hiçbiri yoksa snake_case (fiziksel PG geleneği).
+ *
+ * `defaultRaw('now()')` kullanılır; `default('now()')` DEĞİL — o tırnaklı
+ * literal üretir ve Postgres onu bir kez değerlendirip SABİTLER.
+ */
+function zamanDamgalari<Cols extends Record<string, AnyColumn>>(columns: Cols): Cols {
+  const adlar = new Set(Object.keys(columns));
+  const camel = adlar.has('createdAt') || adlar.has('updatedAt');
+  const c = camel ? 'createdAt' : 'created_at';
+  const u = camel ? 'updatedAt' : 'updated_at';
+  const ek: Record<string, AnyColumn> = {};
+  if (!adlar.has('createdAt') && !adlar.has('created_at')) {
+    ek[c] = t.timestamptz().notNull().defaultRaw('now()') as AnyColumn;
+  }
+  if (!adlar.has('updatedAt') && !adlar.has('updated_at')) {
+    ek[u] = t.timestamptz().notNull().defaultRaw('now()') as AnyColumn;
+  }
+  return Object.keys(ek).length === 0 ? columns : ({ ...columns, ...ek } as Cols);
+}
+
 export function defineTable<Cols extends Record<string, AnyColumn>>(
   columns: Cols,
   extras?: (c: TableExtrasBuilder) => ExtraDef[],
 ): TableDef<Cols> & Cols {
+  columns = zamanDamgalari(columns);
   const ex: TableExtras = { uniques: [], indexes: [], checks: [] };
   for (const e of extras?.(extrasBuilder) ?? []) {
     if (e.kind === 'unique') ex.uniques.push(e.cols);
