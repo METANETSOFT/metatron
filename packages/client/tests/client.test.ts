@@ -35,6 +35,23 @@ test("query: token async fonksiyon olabilir", async (t) => {
   assert.equal(res.value, "ok");
 });
 
+test("#71: apiKey verilirse X-Metatron-Key başlığı gider, verilmezse GÖNDERİLMEZ", async (t) => {
+  // Cift anahtar modeli (#71): sk Bearer'da, pk X-Metatron-Key'de. Basligin
+  // YOKLUGU da sozlesmenin parcasi — eski tek parcali token akisi degismez.
+  const srv = await createFakeServer({ expectToken: "dbb_sk_test", queryHandler: () => "ok" });
+  const client = new MetatronClient({ url: srv.url, token: "dbb_sk_test", apiKey: "dbb_pk_test" });
+  track(t, srv, client);
+  await client.query("x/y", {});
+  assert.equal(srv.queryCalls[0].headers.authorization, "Bearer dbb_sk_test");
+  assert.equal(srv.queryCalls[0].headers["x-metatron-key"], "dbb_pk_test");
+
+  const srv2 = await createFakeServer({ expectToken: "dbb_test", queryHandler: () => "ok" });
+  const client2 = new MetatronClient({ url: srv2.url, token: "dbb_test" });
+  track(t, srv2, client2);
+  await client2.query("x/y", {});
+  assert.equal(srv2.queryCalls[0].headers["x-metatron-key"], undefined);
+});
+
 test("query hatası: MetatronError fırlatır, RETRY EDİLMEZ (deterministik)", async (t) => {
   const srv = await createFakeServer({
     queryHandler: () => {

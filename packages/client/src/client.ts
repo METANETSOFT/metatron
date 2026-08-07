@@ -7,8 +7,16 @@ import type { OptimisticStore, QueryState } from "./store";
 export interface MetatronClientOptions {
   /** Panel base URL'i, ör. "https://panel.example.com" (sondaki / yok sayılır). */
   url: string;
-  /** `metatron login` token'ı (dbb_...) veya token üreten async fonksiyon. */
+  /** `metatron login` token'ı (dbb_... / dbb_sk_...) veya token üreten async fonksiyon. */
   token: string | (() => Promise<string>);
+  /**
+   * #71 anahtar çifti: PUBLIC KEY (`dbb_pk_...`). Verilirse her isteğe
+   * `X-Metatron-Key` başlığı olarak eklenir — panel secret ile eşleşmesini
+   * zorunlu tutar (yanlış eşleşme 401). pk sır DEĞİLDİR (tanımlayıcı);
+   * sır olan `token`'dır (dbb_sk_...). Verilmezse başlık gönderilmez
+   * (geriye uyum: tek parçalı dbb_ token'lar değişmez).
+   */
+  apiKey?: string | (() => Promise<string>);
   /** Gelişmiş: SSE reconnect backoff'u (ms). Varsayılan 500 → 16000, jitter'lı. */
   retry?: { baseMs?: number; maxMs?: number };
 }
@@ -148,6 +156,8 @@ class SseConnection {
     private host: {
       baseUrl: string;
       token(): Promise<string>;
+      /** #71 — varsa `X-Metatron-Key: dbb_pk_...` başlığı gönderilir. */
+      apiKey?(): Promise<string | undefined>;
       retryBaseMs: number;
       retryMaxMs: number;
       applyUpdate(subId: string, value: unknown, version: string): void;
@@ -202,6 +212,8 @@ class SseConnection {
         authorization: `Bearer ${token}`,
         accept: "text/event-stream",
       };
+      const apiKey = await this.host.apiKey?.();
+      if (apiKey) headers["x-metatron-key"] = apiKey;
       if (this.lastEventId !== undefined) headers["last-event-id"] = this.lastEventId;
       const url =
         this.host.baseUrl + "/fn/listen?subs=" + encodeURIComponent(JSON.stringify(this.subs));
@@ -265,6 +277,7 @@ export class MetatronClient {
 
   private readonly baseUrl: string;
   private readonly tokenFn: () => Promise<string>;
+  private readonly apiKeyFn: () => Promise<string | undefined>;
   private readonly conn: SseConnection;
   private watches = new Map<string, WatchEntry>();
   private nextSubId = 1;
@@ -276,9 +289,12 @@ export class MetatronClient {
     this.baseUrl = opts.url.replace(/\/+$/, "");
     const t = opts.token;
     this.tokenFn = typeof t === "function" ? t : async () => t;
+    const k = opts.apiKey;
+    this.apiKeyFn = typeof k === "function" ? k : async () => k;
     this.conn = new SseConnection({
       baseUrl: this.baseUrl,
       token: () => this.tokenFn(),
+      apiKey: () => this.apiKeyFn(),
       retryBaseMs: opts.retry?.baseMs ?? 500,
       retryMaxMs: opts.retry?.maxMs ?? 16000,
       applyUpdate: (subId, value, version) => this.applyUpdate(subId, value, version),
@@ -408,11 +424,14 @@ export class MetatronClient {
 
   private async post<T>(path: string, body: unknown, extraHeaders?: Record<string, string>): Promise<T> {
     const token = await this.tokenFn();
+    const apiKey = await this.apiKeyFn();
     const res = await fetch(this.baseUrl + path, {
       method: "POST",
       headers: {
         authorization: `Bearer ${token}`,
         "content-type": "application/json",
+        // #71 — anahtar çifti: pk verildiyse her istekte eşlik eder.
+        ...(apiKey ? { "x-metatron-key": apiKey } : {}),
         ...extraHeaders,
       },
       body: JSON.stringify(body),
